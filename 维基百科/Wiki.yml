@@ -1,0 +1,35 @@
+version: "3"
+services:
+
+  db:
+    image: postgres:15-alpine
+    container_name: wiki_db
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_PASSWORD: wikijsrocks
+      POSTGRES_USER: wikijs
+    logging:
+      driver: "none"
+    restart: unless-stopped
+    volumes:
+      - wiki_data:/var/lib/postgresql/data
+
+  wiki:
+    image: ghcr.io/requarks/wiki:2  
+    container_name: wiki_app
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
+    restart: unless-stopped
+    ports:
+      - "3010:3000"
+
+volumes:
+  wiki_data:
+    name: wiki_data
