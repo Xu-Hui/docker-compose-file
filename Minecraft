@@ -1,0 +1,21 @@
+services:
+  mc:
+    image: itzg/minecraft-server
+    container_name: mc_catver
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "FORGE"          #设置游戏使用类型
+      VERSION: "1.20.1"      #设置游戏版本
+      MEMORY: "6G"           #设置内存占用大小
+      SERVER_NAME: "猫之猫"   #服务器名称
+      DIFFICULTY: "hard"     #选择世界难度
+      MAX_PLAYERS: "10"      #可进服人数
+      MODE: "survival"       #生存类型
+      ONLINE_MODE: "FALSE"   #关闭正版验证
+    volumes:
+      # 映射目录到宿主机 方便添加插件和模组
+      - /home/mc/catver:/data
