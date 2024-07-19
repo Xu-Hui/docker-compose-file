@@ -15,8 +15,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root    #数据库用户名
       - MYSQL_PASSWORD=nextcloud    #数据库密码
-      - MYSQL_DATABASE=nextcloud    #数据库名称
-      - MYSQL_USER=nextcloud        #数据库端口或主机名
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
 
   app:
     image: nextcloud
